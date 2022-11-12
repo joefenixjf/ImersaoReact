@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
+import Banner from "../src/components/Banner";
 
 function HomePage() {
   return (
@@ -16,6 +17,7 @@ function HomePage() {
         }}
       >
         <Menu />
+        <Banner cover={config.banner} />
         <Header />
         <Timeline playlists={config.playlists} />
       </div>
@@ -63,7 +65,6 @@ function Timeline(props) {
     <StyledTimeline>
       {playlist.map((playlistName) => {
         const videos = props.playlists[playlistName];
-        console.log(videos);
         return (
           <section>
             <h2>{playlistName}</h2>
