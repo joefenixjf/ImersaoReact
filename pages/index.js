@@ -1,11 +1,13 @@
+import React from "react";
 import config from "../config.json";
 import styled from "styled-components";
 import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
-import Banner from "../src/components/Banner";
+import { StyledBanner } from "../src/components/Banner";
 
 function HomePage() {
+  const [valorDoFiltro, setValorDoFiltro] = React.useState("");
   return (
     <>
       <CSSReset />
@@ -16,10 +18,12 @@ function HomePage() {
           flex: 1,
         }}
       >
-        <Menu />
-        <Banner cover={config.banner} />
+        <Menu
+          valorDoFiltro={valorDoFiltro}
+          setValorDoFiltro={setValorDoFiltro}
+        />
         <Header />
-        <Timeline playlists={config.playlists} />
+        <Timeline searchValue={valorDoFiltro} playlists={config.playlists} />
       </div>
     </>
   );
@@ -34,7 +38,6 @@ const StyledHeader = styled.header`
     border-radius: 50%;
   }
   .user-info {
-    margin-top: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -47,6 +50,7 @@ const StyledHeader = styled.header`
 function Header() {
   return (
     <StyledHeader>
+      <StyledBanner bg={config.banner} />
       {/* <img src="banner" /> */}
       <section className="user-info">
         <img src={`http://github.com/${config.github}.png`} />
@@ -59,26 +63,29 @@ function Header() {
   );
 }
 
-function Timeline(props) {
+function Timeline({ searchValue, ...props }) {
   const playlist = Object.keys(props.playlists);
   return (
     <StyledTimeline>
       {playlist.map((playlistName) => {
         const videos = props.playlists[playlistName];
         return (
-          <section>
+          <section key={playlistName}>
             <h2>{playlistName}</h2>
             <div>
-              {videos.map((video) => {
-                return (
-                  <section>
-                    <a href={video.url}>
+              {videos
+                .filter((video) => {
+                  const reg = new RegExp(searchValue, "i");
+                  return video.title.match(reg);
+                })
+                .map((video) => {
+                  return (
+                    <a key={video.url} href={video.url}>
                       <img src={video.thumb} />
                       <span>{video.title}</span>
                     </a>
-                  </section>
-                );
-              })}
+                  );
+                })}
             </div>
           </section>
         );
