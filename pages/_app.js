@@ -6,6 +6,7 @@ import ColorModeProvider, {
 } from "../src/components/Menu/ColorMode";
 import RegisterVideo from "../src/components/RegisterVideo";
 
+// Esquema de cores para os temas claro e escuro
 const theme = {
   light: {
     backgroundBase: "#f9f9f9",
@@ -23,31 +24,7 @@ const theme = {
   },
 };
 
-// function MyApp({ Component, pageProps }) {
-//   const contexto = React.useContext(ColorModeContext);
-//   return (
-//     <ThemeProvider theme={theme[contexto.mode]}>
-//       <CSSReset />
-//       <Component {...pageProps} />
-//     </ThemeProvider>
-//   );
-// }
-
-// function ProviderWrapper(props) {
-//   return (
-//     <ColorModeProvider initialMode={"light"}>
-//       {props.children}
-//     </ColorModeProvider>
-//   );
-// }
-// export default function _App(props) {
-//   return (
-//     <ProviderWrapper>
-//       <MyApp {...props} />
-//     </ProviderWrapper>
-//   );
-// }
-
+// Componente raiz do projecto e com o ThemeProvider para settar o contexto do thema
 function Root({ Component, pageProps }) {
   const contexto = React.useContext(ColorModeContext);
   return (
@@ -58,10 +35,21 @@ function Root({ Component, pageProps }) {
     </ThemeProvider>
   );
 }
-export default function _App(props) {
+
+// Wrapper para "settar" o contexto do colorMode
+function ProviderWrapper(props) {
   return (
     <ColorModeProvider initialMode={"light"}>
-      <Root {...props} />
+      {props.children}
     </ColorModeProvider>
+  );
+}
+
+// Componente que será exportado para inciar aplicação
+export default function _App(props) {
+  return (
+    <ProviderWrapper>
+      <Root {...props} />
+    </ProviderWrapper>
   );
 }

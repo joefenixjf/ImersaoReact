@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledRegisterVideo } from "./styles";
-import { createClient } from "@supabase/supabase-js";
+// import { createClient } from "@supabase/supabase-js";
 
 function useForm(propsDoForm) {
   const [values, setValues] = React.useState(propsDoForm.initialValues);
@@ -25,7 +25,7 @@ function useForm(propsDoForm) {
 const PROJECT_URL = "https://pjezbcwjdfzwpvejicfu.supabase.co";
 const PUBLIC_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqZXpiY3dqZGZ6d3B2ZWppY2Z1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgzOTg0MzEsImV4cCI6MTk4Mzk3NDQzMX0.7ejCFpdEa8Ck_FUNvVAz2H5VuNDhQfJMUCt_XdndVQE";
-const supabase = createClient(PROJECT_URL, PUBLIC_KEY);
+// const supabase = createClient(PROJECT_URL, PUBLIC_KEY);
 
 // Pegar a thumbnail de um video
 function getThumbnail(url) {

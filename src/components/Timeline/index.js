@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledTimeline = styled.div`
+const StyledTimeline = styled.div`
   flex: 1;
   width: 100%;
   padding: 16px;
@@ -44,3 +44,34 @@ export const StyledTimeline = styled.div`
     }
   }
 `;
+
+export default function Timeline({ searchValue, ...props }) {
+  const playlist = Object.keys(props.playlists);
+  return (
+    <StyledTimeline>
+      {playlist.map((playlistName) => {
+        const videos = props.playlists[playlistName];
+        return (
+          <section key={playlistName}>
+            <h2>{playlistName}</h2>
+            <div>
+              {videos
+                .filter((video) => {
+                  const reg = new RegExp(searchValue, "i");
+                  return video.title.match(reg);
+                })
+                .map((video) => {
+                  return (
+                    <a key={video.url} href={video.url}>
+                      <img src={video.thumb} />
+                      <span>{video.title}</span>
+                    </a>
+                  );
+                })}
+            </div>
+          </section>
+        );
+      })}
+    </StyledTimeline>
+  );
+}
