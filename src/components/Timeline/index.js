@@ -4,7 +4,8 @@ const StyledTimeline = styled.div`
   flex: 1;
   width: 100%;
   padding: 16px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow: visible;
   h2 {
     font-size: 16px;
     margin-bottom: 16px;
@@ -45,6 +46,7 @@ const StyledTimeline = styled.div`
   }
 `;
 
+// componente que renderiza o objeto com os canais favoritos
 export default function Timeline({ searchValue, ...props }) {
   const playlist = Object.keys(props.playlists);
   return (

@@ -24,6 +24,15 @@ const theme = {
   },
 };
 
+// Wrapper dara o contexto do Provider e passará para os "children"
+function ProviderWrapper(props) {
+  return (
+    <ColorModeProvider initialMode={"light"}>
+      {props.children}
+    </ColorModeProvider>
+  );
+}
+
 // Componente raiz do projecto e com o ThemeProvider para settar o contexto do thema
 function Root({ Component, pageProps }) {
   const contexto = React.useContext(ColorModeContext);
@@ -33,15 +42,6 @@ function Root({ Component, pageProps }) {
       <Component {...pageProps} />
       <RegisterVideo />
     </ThemeProvider>
-  );
-}
-
-// Wrapper para "settar" o contexto do colorMode
-function ProviderWrapper(props) {
-  return (
-    <ColorModeProvider initialMode={"light"}>
-      {props.children}
-    </ColorModeProvider>
   );
 }
 

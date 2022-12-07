@@ -55,8 +55,6 @@ export default function DarkModeSwitch() {
         type="checkbox"
         onChange={() => {
           contexto.toggleMode();
-          // if (contexto.mode == "dark") contexto.setMode("light");
-          // if (contexto.mode == "light") contexto.setMode("dark");
         }}
       />
       <label htmlFor="darkmode" className="darkmode-switch">

@@ -17,7 +17,7 @@ const StyledFavoritos = styled.div`
     width: 100%;
     max-width: 210px;
     height: auto;
-    transform: scale(0.7);
+    transform: scale(0.9);
   }
   section {
     width: 100%;
@@ -28,7 +28,7 @@ const StyledFavoritos = styled.div`
       width: calc(100vw - 16px * 4);
       display: grid;
       grid-gap: 16px;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
       grid-auto-flow: column;
       grid-auto-columns: minmax(200px, 1fr);
       overflow-x: scroll;
@@ -37,9 +37,7 @@ const StyledFavoritos = styled.div`
         scroll-snap-align: start;
         span {
           text-align: center;
-          font-size: 20px;
-          margin-top: -8px;
-          padding-top: -8px;
+          font-size: 18px;
           display: block;
           color: ${({ theme }) => theme.textColorBase || "#222222"};
         }
@@ -48,9 +46,9 @@ const StyledFavoritos = styled.div`
   }
 `;
 
+// componente que renderiza o objeto com os canais favoritos
 export default function Favoritos(props) {
   const listaCanais = props.canais;
-  console.log("favoritos props", listaCanais);
 
   return (
     <StyledFavoritos>
